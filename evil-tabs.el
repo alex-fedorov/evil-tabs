@@ -41,6 +41,11 @@
       (elscreen-create)
       (switch-to-buffer cb))))
 
+(evil-define-motion evil-tabs-goto-tab (&optional count)
+  (if count
+     (elscreen-goto (- count 1))
+     (elscreen-next)))
+
 (evil-ex-define-cmd "tabe[dit]" 'evil-tabs-tabedit)
 (evil-ex-define-cmd "tabclone" 'elscreen-clone)
 (evil-ex-define-cmd "tabc[lose]" 'elscreen-kill)
@@ -56,7 +61,7 @@
 (evil-ex-define-cmd "q[uit]" 'evil-tab-sensitive-quit)
 
 (evil-define-key 'normal evil-tabs-mode-map
-  "gt" 'elscreen-next
+  "gt" 'evil-tabs-goto-tab
   "gT" 'elscreen-previous
   "T" 'evil-tabs-current-buffer-to-tab)
 
